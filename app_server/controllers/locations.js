@@ -1,47 +1,40 @@
 /* GET 'home' page */
 const homelist = (req, res) => {
   res.render('locations-list', {
-    title: 'Loc8r - find a place to work with wifi',
+    title: 'TFI-24 - Find a place to work with wifi',
     pageHeader: {
-      title: 'Loc8r',
+      title: 'TFI-24',
       strapline: 'Find places to work with wifi near you!'
     },
     sidebar:
-      "Looking for wifi and a seat? Loc8r helps you find places " +
+      "Looking for practice and a showcase? TFI-24 helps you find places " +
       "to work when out and about. Perhaps with coffee, cake or a pint? " +
-      "Let Loc8r help you find the place you're looking for.",
+      "Let TFI-24 help you find the place you're looking for.",
     locations: [
       {
-        name: 'Starcups',
-        address: '125 High Street, Reading, RG6 1PS',
+        name: 'Jubilee Hills, Hyderabad',
+        address: '124 High Street, Reading, RG6 1PS',
         rating: 3,
-        facilities: ['Hot drinks', 'Food', 'Premium wifi'],
+        facilities: ['Practice rooms', 'Food', 'Premium wifi'],
         distance: '100m'
       },
       {
-        name: 'Cafe Hero',
-        address: '125 High Street, Reading, RG6 1PS',
+        name: 'Ghatkesar, Hyderabad',
+        address: 'Singapore township, Hyderabad',
         rating: 4,
         facilities: ['Hot drinks', 'Food', 'Premium wifi'],
         distance: '200m'
       },
-      {
-        name: 'Burger Queen',
-        address: '125 High Street, Reading, RG6 1PS',
-        rating: 2,
-        facilities: ['Food', 'Premium wifi'],
-        distance: '250m'
-      }
     ]
   });
 };
 
 /* Location data */
 const location = {
-  name: 'Starcups',
-  address: '125 High Street, Reading, RG6 1PS',
+  name: 'Amberpet, Hyderabad',
+  address: '125 High Street',
   rating: 3,
-  facilities: ['Hot drinks', 'Food', 'Premium wifi'],
+  facilities: ['Wifi', 'Food', 'Practice Rooms'],
   coords: {
     lat: 51.455041,
     lng: -0.9690884
@@ -87,7 +80,7 @@ const locationInfo = (req, res) => {
     pageHeader: { title: location.name },
     sidebar: {
       context:
-        'is on Loc8r because it has accessible wifi and space to sit down with your laptop and get some work done.',
+        'TFI-24 has accessible wifi and space to practice your lines. And execute your talent to the fullest.',
       callToAction:
         "If you've been and you like it - or if you don't - please leave a review to help other people just like you."
     },

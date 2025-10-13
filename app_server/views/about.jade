@@ -1,6 +1,14 @@
-// Example: about.jade
 extends layout
 
 block content
-  h1 About Page
-  p Your digital gateway to stardom. Discover movie auditions and submit your application online.
+  .row
+    .col-12.col-md-10.offset-md-1
+      //- The pageHeader object is passed from the others.js controller
+      if pageHeader
+        h1.mb-4.text-center= pageHeader.title
+      
+      //- The content string is passed from the controller.
+      //- This splits the string by double newlines and creates a paragraph for each part.
+      - const paragraphs = content.split('\n\n');
+      each paragraph in paragraphs
+        p.lead= paragraph
