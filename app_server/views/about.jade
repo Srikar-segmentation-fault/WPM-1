@@ -3,12 +3,156 @@ extends layout
 block content
   .row
     .col-12.col-md-10.offset-md-1
-      //- The pageHeader object is passed from the others.js controller
-      if pageHeader
-        h1.mb-4.text-center= pageHeader.title
       
-      //- The content string is passed from the controller.
-      //- This splits the string by double newlines and creates a paragraph for each part.
-      - const paragraphs = content.split('\n\n');
-      each paragraph in paragraphs
-        p.lead= paragraph
+      h1.mb-4.text-center Bringing Auditions to the Digital Age
+      
+      p.lead.mb-3
+        | TFI-24 is revolutionizing how talent connects with opportunity in the film industry. 
+        | We understand the struggle of talented individuals who miss out on auditions simply because 
+        | they don't have access to the right information at the right time.
+      
+      p.lead.mb-3
+        | Our platform bridges the gap between aspiring actors, musicians, dancers, and other creative 
+        | professionals with casting directors, filmmakers, and production houses. No more missed 
+        | opportunities, no more scattered information—everything you need is in one place.
+      
+      p.lead.mb-3
+        | Whether you're an aspiring actor looking for your first break, a seasoned performer seeking 
+        | new roles, or a casting director searching for the perfect talent, TFI-24 brings the entire 
+        | film industry ecosystem to your fingertips.
+      
+      h2.text-center.mb-5(style="color: #1a73e8; font-weight: 700; font-size: 2rem; margin-top: 3rem;") Why Choose TFI-24?
+      
+      //- CARD SWAP ANIMATION CONTAINER
+      .card-swap-wrapper.my-5
+        //- UPDATED: Changed text and fixed alignment
+        p.text-center.text-muted.mb-3.card-swap-instruction (Hover on cards to pause)
+        
+        .card-swap-container#cardSwapAbout
+          //- Card 1: Real-Time Updates
+          .card
+            .card-content
+              i.fas.fa-bullhorn.card-icon
+              .card-title Real-Time Updates
+              .card-description Get instant notifications about auditions matching your profile and location.
+          
+          //- Card 2: Verified Opportunities
+          .card
+            .card-content
+              i.fas.fa-film.card-icon
+              .card-title Verified Opportunities
+              .card-description All auditions are verified to ensure authenticity and protect you from fraud.
+          
+          //- Card 3: Direct Connect
+          .card
+            .card-content
+              i.fas.fa-users.card-icon
+              .card-title Direct Connect
+              .card-description Connect directly with casting directors and submit your portfolio online.
+          
+          //- Card 4: Transparent Reviews
+          .card
+            .card-content
+              i.fas.fa-star.card-icon
+              .card-title Transparent Reviews
+              .card-description Read authentic reviews from other talent about their experiences at auditions.
+          
+          //- Card 5: Geo-Location Smart
+          .card
+            .card-content
+              i.fas.fa-map-marker-alt.card-icon
+              .card-title Smart Location Matching
+              .card-description Find auditions near you and never miss an opportunity due to location barriers.
+          
+          //- Card 6: Easy Portfolio
+          .card
+            .card-content
+              i.fas.fa-briefcase.card-icon
+              .card-title Easy Portfolio Setup
+              .card-description Showcase your talent with videos, photos, and credentials all in one place.
+      
+      p.lead.mb-3.mt-5
+        | Join thousands of creative professionals who are already discovering their next big opportunity 
+        | through TFI-24. Because talent deserves to be discovered, not overlooked.
+      
+      .text-center.mt-5
+        a.btn.btn-primary.btn-lg.px-5.me-3(href='/register') Join as Talent
+        a.btn.btn-outline-primary.btn-lg.px-5(href='/locations') Browse Auditions
+
+  //- CUSTOM STYLING FOR ABOUT PAGE CARD SWAP
+  style.
+    .card-swap-wrapper {
+      position: relative;
+      min-height: 450px; 
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      padding: 1rem 0;
+      width: 100%;
+      overflow: hidden;
+      margin-top: 4rem !important;
+    }
+    
+    //- CSS FIX: For the instruction text
+    .card-swap-instruction {
+      position: absolute;
+      top: -15px;
+      left: 0;
+      right: 0;
+      z-index: 10;
+    }
+    
+    #cardSwapAbout {
+      position: relative;
+      max-width: 100%; 
+      cursor: pointer;
+    }
+    
+    .card-swap-container .card-content {
+      background: linear-gradient(135deg, #1a73e8 0%, #0d47a1 100%);
+    }
+    
+    .card-swap-container .card-icon,
+    .card-swap-container .card-title {
+      color: #ffffff;
+    }
+    
+    .card-swap-container .card-description {
+      color: rgba(255, 255, 255, 0.95);
+    }
+
+block append scripts
+  script.
+    //- SCRIPT FIX: Reverted to the smooth, built-in animation
+    document.addEventListener('DOMContentLoaded', function() {
+      const container = document.getElementById('cardSwapAbout');
+      
+      if (typeof gsap === 'undefined') {
+        console.error('GSAP library not loaded. Card swap animation cannot initialize.');
+        return;
+      }
+      
+      if (typeof initCardSwap !== 'function') {
+        console.warn('initCardSwap function not available.');
+        return;
+      }
+
+      // Re-enable the built-in animation and add pauseOnHover
+      try {
+        initCardSwap('cardSwapAbout', {
+          width: 500,
+          height: 400,
+          cardDistance: 60,
+          verticalDistance: 70,
+          delay: 4000,          // <-- Auto-play every 4 seconds
+          pauseOnHover: true,   // <-- Pauses when you hover
+          skewAmount: 6,
+          easing: 'elastic'
+        });
+        console.log('✓ Card swap initialized (auto-play with hover-pause)');
+      } catch (e) {
+        console.warn('Card swap initialization error:', e);
+      }
+      
+      // NO MORE MANUAL CLICK HANDLER - this removes the lag/shiver
+    });

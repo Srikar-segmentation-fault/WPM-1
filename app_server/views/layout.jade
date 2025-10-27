@@ -2,131 +2,396 @@ doctype html
 html(lang='en')
   head
     meta(name='viewport', content='width=device-width, initial-scale=1.0', charset='utf-8')
-    title TFI-24 - The 24 crafts for film industry digitally
+    meta(name='description', content='TFI-24 - Discover verified film auditions, connect with casting directors, and showcase your talent online. Never miss an opportunity in the film industry.')
+    meta(name='keywords', content='film auditions, casting calls, acting opportunities, talent discovery, movie auditions, casting directors')
+    title TFI-24 - Discover Film Auditions & Showcase Your Talent
+    
+    //- STYLESHEETS
     link(rel='stylesheet', href='/stylesheets/bootstrap.min.css')
-    link(rel='stylesheet', href='/stylesheets/all.min.css')
+    link(rel='stylesheet', href='/stylesheets/all.min.css') // Font Awesome
+    
+    //- GOOGLE FONTS
     link(rel='preconnect', href='https://fonts.googleapis.com')
     link(rel='preconnect', href='https://fonts.gstatic.com', crossorigin)
     link(href='https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap', rel='stylesheet')
 
-    style.
-      /* Improved Styling */
-      body {
-        background-color: #f0f2f5; /* A softer, modern background color */
-        font-family: 'Poppins', sans-serif;
-        margin: 0;
-        padding-top: 80px; /* Increased top padding for better spacing */
-        color: #333; /* Darker base text color for readability */
-      }
+    //- ANIMATION STYLESHEETS
+    link(rel='stylesheet', href='/stylesheets/flying-poster.css')
+    link(rel='stylesheet', href='/stylesheets/card-swap.css')
 
-      /* Navbar Enhancements */
-      .navbar {
-        background: #ffffff; /* Cleaner white background */
-        box-shadow: 0 2px 8px rgba(0, 0, 0, 0.07);
-        padding-top: 0.75rem;
-        padding-bottom: 0.75rem;
-      }
-      .navbar-brand {
-        font-weight: 700;
-        color: #1a73e8 !important; /* Brighter, more modern blue */
-        letter-spacing: 0.5px;
-        transition: transform 0.2s ease-in-out;
-      }
-      .navbar-brand:hover {
-        transform: scale(1.03); /* Subtle hover effect */
-      }
-      .navbar-nav .nav-link {
-        color: #5f6368 !important; /* Softer text color for nav links */
-        font-weight: 500;
-        margin: 0 0.5rem;
-        padding: 0.5rem 1rem;
-        border-radius: 8px;
-        transition: all 0.3s ease;
-      }
-      .navbar-nav .nav-link:hover, .navbar-nav .nav-link.active {
-        background-color: #e8f0fe; /* Background highlight on hover */
-        color: #1a73e8 !important;
+    //- CUSTOM CSS
+    style.
+      /* --- Base & Layout --- */
+      html, body {
+        height: 100%;
+        margin: 0;
+        padding: 0;
       }
       
-      /* Style for the Sign Up button in Navbar */
-      .navbar-nav .nav-link.btn-primary {
-        color: #ffffff !important;
+      body {
+        background-color: #f0f2f5;
+        font-family: 'Poppins', sans-serif;
+        padding-top: 80px;
+        color: #333;
+        position: relative;
       }
-      .navbar-nav .nav-link.btn-primary:hover {
-        color: #ffffff !important;
-        background-color: #1a73e8; /* Keep background color consistent on hover */
-        filter: brightness(90%); /* Darken slightly on hover */
-      }
-
-      /* Main Content Containerization */
+      
+      /* --- Removed Global Background Animation --- */
+      /* #background-animation-wrapper was here */
+      
       .content-wrapper {
         background: #ffffff;
-        padding: 2.5rem; /* Generous padding for content */
-        border-radius: 12px; /* Softer, rounded corners */
-        box-shadow: 0 4px 15px rgba(0, 0, 0, 0.08); /* Deeper shadow for a "lifted" feel */
+        padding: 2.5rem;
+        border-radius: 12px;
+        box-shadow: 0 4px 15px rgba(0, 0, 0, 0.08);
         margin-top: 2rem;
-        border: 1px solid #e0e0e0; /* Subtle border */
+        margin-bottom: 2rem;
+        border: 1px solid #e0e0e0;
+        position: relative;
+        z-index: 1;
+      }
+      
+      .rating .fas, .rating .far { 
+        color: #f5c518; 
+        font-size: 1.1rem; 
       }
 
-      /* Footer Styling */
-      footer {
-        background: transparent; /* Makes footer blend with the body background */
-        text-align: center;
-        padding: 2rem 0;
-        margin-top: 3rem;
-        font-size: 0.9rem;
-        color: #6c757d; /* Softer footer text color */
-        border-top: 1px solid #dee2e6; /* Clear separator line */
+      /* --- Navbar --- */
+      .navbar { 
+        background: #ffffff; 
+        box-shadow: 0 2px 8px rgba(0, 0, 0, 0.07); 
+        padding: 0.75rem 0;
+        position: relative;
+        z-index: 1050;
       }
-      footer a {
+      
+      .navbar-brand { 
+        font-weight: 700; 
+        color: #1a73e8 !important; 
+        font-size: 1.5rem; 
+      }
+      
+      .navbar-brand i { 
+        margin-right: 0.5rem; 
+      }
+      
+      .navbar-nav .nav-link { 
+        color: #5f6368 !important; 
+        font-weight: 500; 
+        margin: 0 0.5rem; 
+        padding: 0.5rem 1rem; 
+        border-radius: 8px; 
+        transition: all 0.3s ease; 
+        cursor: pointer;
+      }
+      
+      .navbar-nav .nav-link:hover, 
+      .navbar-nav .nav-link.active { 
+        background-color: #e8f0fe; 
+        color: #1a73e8 !important; 
+      }
+      
+      .navbar-nav .nav-link.btn-primary { 
+        color: #ffffff !important; 
+        background-color: #1a73e8;
+        border-radius: 6px;
+      }
+      
+      .navbar-nav .nav-link.btn-primary:hover { 
+        filter: brightness(90%); 
+      }
+      
+      /* --- Dropdown Menu --- */
+      .dropdown-menu { 
+        border-radius: 8px; 
+        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15); 
+        border: 1px solid #e0e0e0;
+        animation: slideDown 0.2s ease-out;
+      }
+      
+      @keyframes slideDown {
+        from {
+          opacity: 0;
+          transform: translateY(-10px);
+        }
+        to {
+          opacity: 1;
+          transform: translateY(0);
+        }
+      }
+      
+      .dropdown-item { 
+        padding: 0.5rem 1.5rem; 
+        transition: all 0.2s ease;
+        color: #5f6368;
+      }
+      
+      .dropdown-item:hover { 
+        background-color: #e8f0fe; 
         color: #1a73e8;
-        text-decoration: none;
-        font-weight: 500;
       }
-      footer a:hover {
-        text-decoration: underline;
+      
+      .dropdown-item i { 
+        width: 20px;
+        margin-right: 0.5rem;
+      }
+      
+      .dropdown-divider {
+        margin: 0.5rem 0;
+      }
+
+      /* --- Homepage (index.jade) --- */
+      .hero-banner { 
+        padding: 4rem 1rem; 
+        position: relative;
+        z-index: 1;
+      }
+      
+      .craft-card { 
+        border: 1px solid #e0e0e0; 
+        border-radius: 10px; 
+        transition: all 0.3s ease; 
+        height: 100%; 
+      }
+      
+      .craft-card:hover { 
+        transform: translateY(-5px); 
+        box-shadow: 0 6px 20px rgba(0, 0, 0, 0.1); 
+      }
+      
+      .craft-card .card-title { 
+        color: #1a73e8; 
+        font-weight: 600; 
+      }
+
+      /* --- WebGL Canvas Styling (For index.jade) --- */
+      .hero-canvas-container {
+        height: 50vh;
+        min-height: 400px;
+        width: 100%;
+        border-radius: 12px;
+        overflow: hidden;
+        position: relative;
+        z-index: 1;
+      }
+      /* Ensure canvas fills its container */
+      .hero-canvas-container canvas {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+      }
+
+      /* --- Location List (locations-list.jade) - Now Audition Cards --- */
+      .location-card { 
+        border: 1px solid #e0e0e0; 
+        border-radius: 10px; 
+        transition: all 0.3s ease; 
+        text-decoration: none; 
+        color: inherit;
+        position: relative;
+        z-index: 1;
+      }
+      
+      .location-card:hover { 
+        transform: translateY(-5px); 
+        box-shadow: 0 6px 20px rgba(0, 0, 0, 0.1); 
+      }
+      
+      .location-card .badge-distance { 
+        background-color: #e8f0fe; 
+        color: #1a73e8; 
+        font-weight: 500; 
+      }
+      
+      .location-card .facility-badge { 
+        background-color: #f0f0f0; 
+        color: #555; 
+        font-weight: 500; 
+      }
+      
+      .location-card .badge-urgent { 
+        background-color: #ff4444; 
+        color: #fff; 
+        font-weight: 600; 
+      }
+      
+      .location-card .badge-new { 
+        background-color: #4CAF50; 
+        color: #fff; 
+        font-weight: 600; 
+      }
+
+      /* --- Location Info (location-info.jade) - Now Audition Details --- */
+      .info-card { 
+        border-radius: 10px; 
+        border: 1px solid #e0e0e0;
+        position: relative;
+        z-index: 1;
+      }
+      
+      .info-card .card-header, 
+      .info-card .list-group-item { 
+        background-color: #ffffff; 
+      }
+      
+      .info-card .card-header { 
+        font-weight: 600; 
+        font-size: 1.2rem; 
+      }
+      
+      .review-card { 
+        border: 1px solid #e0e0e0; 
+        border-radius: 10px;
+        position: relative;
+        z-index: 1;
+      }
+      
+      .review { 
+        border-bottom: 1px solid #eee; 
+        padding: 1.25rem 0; 
+      }
+      
+      .review:last-child { 
+        border-bottom: none; 
+        padding-bottom: 0; 
+      }
+      
+      .review-author { 
+        font-weight: 600; 
+        margin-bottom: 0; 
+      }
+      
+      .review-timestamp { 
+        font-size: 0.85rem; 
+        color: #6c757d; 
+      }
+      
+      /* --- Footer --- */
+      footer { 
+        text-align: center; 
+        padding: 2rem 0; 
+        font-size: 0.9rem; 
+        color: #6c757d; 
+        border-top: 1px solid #dee2e6;
+        position: relative;
+        z-index: 1;
+        background: #ffffff;
+      }
+      
+      .container {
+        position: relative;
+        z-index: 1;
       }
 
   body
+    //- NAVBAR
     nav.navbar.fixed-top.navbar-expand-md.navbar-light
       .container
-        a.navbar-brand(href='/') TFI-24
-        button.navbar-toggler(type='button', data-toggle='collapse', data-target='#navbarMain')
+        a.navbar-brand(href='/') 
+          i.fas.fa-film
+          | TFI-24
+        button.navbar-toggler(type='button', data-bs-toggle='collapse', data-bs-target='#navbarMain', aria-controls='navbarMain', aria-expanded='false', aria-label='Toggle navigation')
           span.navbar-toggler-icon
         #navbarMain.navbar-collapse.collapse
-          ul.navbar-nav.ml-auto
+          ul.navbar-nav.ms-auto
             li.nav-item
-              a.nav-link(href='/about/') 
-                i.fas.fa-info-circle.mr-1
+              a.nav-link(href='/', role='link') 
+                i.fas.fa-home.me-1
+                |  Home
+            
+            //- Auditions Dropdown
+            li.nav-item.dropdown
+              a.nav-link.dropdown-toggle(href='#', id='auditionsDropdown', role='button', data-bs-toggle='dropdown', aria-expanded='false')
+                i.fas.fa-calendar-alt.me-1
+                |  Auditions
+              ul.dropdown-menu(aria-labelledby='auditionsDropdown')
+                li
+                  a.dropdown-item(href='/locations/')
+                    i.fas.fa-list
+                    | Browse All Auditions
+                li
+                  a.dropdown-item(href='/location')
+                    i.fas.fa-info-circle
+                    | Audition Details
+                li
+                  hr.dropdown-divider
+                li
+                  a.dropdown-item(href='/location-review-form/')
+                    i.fas.fa-star
+                    | Share Your Experience
+            
+            li.nav-item
+              a.nav-link(href='/about/', role='link') 
+                i.fas.fa-info-circle.me-1
                 |  About
-            li.nav-item
-              a.nav-link(href='/location-info/') 
-                i.fas.fa-map-marked-alt.mr-1
-                |  See Locations
-            li.nav-item
-              a.nav-link(href='/location-review-form/') 
-                i.fas.fa-plus-circle.mr-1
-                |  Add Review
-            li.nav-item
-              a.nav-link(href='/login')
-                i.fas.fa-sign-in-alt.mr-1
-                |  Login
-            li.nav-item
-              a.nav-link.btn.btn-primary(href='/register')
-                i.fas.fa-user-plus.mr-1
-                |  Sign Up
+            
+            //- Account Section
+            li.nav-item.dropdown.ms-md-2
+              a.nav-link.dropdown-toggle(href='#', id='accountDropdown', role='button', data-bs-toggle='dropdown', aria-expanded='false')
+                i.fas.fa-user-circle.me-1
+                |  Account
+              ul.dropdown-menu.dropdown-menu-end(aria-labelledby='accountDropdown')
+                li
+                  a.dropdown-item(href='/login')
+                    i.fas.fa-sign-in-alt
+                    | Login
+                li
+                  a.dropdown-item(href='/register')
+                    i.fas.fa-user-plus
+                    | Sign Up
+                li
+                  hr.dropdown-divider
+                li
+                  a.dropdown-item(href='#')
+                    i.fas.fa-user
+                    | My Profile
+                li
+                  a.dropdown-item(href='#')
+                    i.fas.fa-bookmark
+                    | Saved Auditions
+                li
+                  a.dropdown-item(href='#')
+                    i.fas.fa-bell
+                    | Notifications
+            
+            //- CTA Button
+            li.nav-item.ms-md-2
+              a.nav-link.btn.btn-primary.px-3(href='/register', role='link')
+                i.fas.fa-star.me-1
+                |  Join Now
 
-
-    //- Content is now wrapped for better containerization
+    //- MAIN CONTENT BLOCK
     .container
-      .content-wrapper
-        block content
+      block content
 
-    footer.text-center.mt-5.py-4
+    //- FOOTER
+    footer
       .container
-        p &copy; #{new Date().getFullYear()} TFI-24. All rights reserved.
+        p &copy; #{new Date().getFullYear()} TFI-24 - Bringing Auditions to the Digital Age. All rights reserved.
+        p.small.mt-2
+          a.text-muted.mx-2(href='/about') About
+          | | 
+          a.text-muted.mx-2(href='#') Privacy Policy
+          | | 
+          a.text-muted.mx-2(href='#') Terms of Service
+          | | 
+          a.text-muted.mx-2(href='#') Contact
 
-    script(src='/javascripts/jquery-3.5.1.slim.min.js')
-    script(src='/javascripts/popper.min.js')
-    script(src='/javascripts/bootstrap.min.js')
+    //- GLOBAL SCRIPTS
+    script(src='https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js')
+    
+    //- GSAP Library (required for card-swap animation)
+    script(src='https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js')
+    
+    //- OGL Library (required for flying-posters animation on index page)
+    //- THIS IS THE CORRECT, WORKING LINK
+    script(src='https://cdn.jsdelivr.net/npm/ogl/dist/ogl.umd.js')
+    
+    //- Custom Animation Scripts (load once globally)
+    script(src='/javascripts/flying-posters.js')
+    script(src='/javascripts/card-swap.js')
 
+    //- Page-specific scripts block
+    block scripts

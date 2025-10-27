@@ -1,0 +1,150 @@
+/* Infinite Scroll Animation Styles */
+
+.infinite-scroll-wrapper {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  max-height: 600px;
+  overflow: hidden;
+  overscroll-behavior: none;
+}
+
+.infinite-scroll-wrapper::before,
+.infinite-scroll-wrapper::after {
+  content: '';
+  position: absolute;
+  background: linear-gradient(var(--dir, to bottom), rgba(240, 242, 245, 1), transparent);
+  height: 25%;
+  width: 100%;
+  z-index: 1;
+  pointer-events: none;
+}
+
+.infinite-scroll-wrapper::before {
+  top: 0;
+}
+
+.infinite-scroll-wrapper::after {
+  --dir: to top;
+  bottom: 0;
+}
+
+.infinite-scroll-container {
+  display: flex;
+  flex-direction: column;
+  overscroll-behavior: contain;
+  padding-inline: 1rem;
+  cursor: grab;
+  transform-origin: center center;
+  width: 100%;
+  max-width: 30rem;
+}
+
+.infinite-scroll-container:active {
+  cursor: grabbing;
+}
+
+.infinite-scroll-item {
+  --accent-color: #1a73e8;
+  border-radius: 15px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 1.5rem;
+  font-size: 1.25rem;
+  font-weight: 600;
+  text-align: center;
+  border: 2px solid var(--accent-color);
+  background: white;
+  user-select: none;
+  box-sizing: border-box;
+  position: relative;
+  min-height: 150px;
+  margin-top: -0.5em;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.infinite-scroll-item:hover {
+  transform: scale(1.02);
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.15);
+  z-index: 2;
+}
+
+.infinite-scroll-item .item-icon {
+  font-size: 2.5rem;
+  margin-bottom: 0.5rem;
+  color: var(--accent-color);
+}
+
+.infinite-scroll-item .item-title {
+  font-size: 1.25rem;
+  font-weight: 700;
+  margin-bottom: 0.25rem;
+  color: #333;
+}
+
+.infinite-scroll-item .item-description {
+  font-size: 0.9rem;
+  font-weight: 400;
+  color: #666;
+  line-height: 1.4;
+}
+
+/* Different color variants for items */
+.infinite-scroll-item:nth-child(1) {
+  --accent-color: #1a73e8;
+  background: linear-gradient(135deg, #e8f0fe 0%, #ffffff 100%);
+}
+
+.infinite-scroll-item:nth-child(2) {
+  --accent-color: #34a853;
+  background: linear-gradient(135deg, #e6f4ea 0%, #ffffff 100%);
+}
+
+.infinite-scroll-item:nth-child(3) {
+  --accent-color: #ea4335;
+  background: linear-gradient(135deg, #fce8e6 0%, #ffffff 100%);
+}
+
+.infinite-scroll-item:nth-child(4) {
+  --accent-color: #fbbc04;
+  background: linear-gradient(135deg, #fef7e0 0%, #ffffff 100%);
+}
+
+.infinite-scroll-item:nth-child(5) {
+  --accent-color: #9334e6;
+  background: linear-gradient(135deg, #f3e8ff 0%, #ffffff 100%);
+}
+
+.infinite-scroll-item:nth-child(6) {
+  --accent-color: #ff6b6b;
+  background: linear-gradient(135deg, #ffe5e5 0%, #ffffff 100%);
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .infinite-scroll-wrapper {
+    max-height: 500px;
+  }
+  
+  .infinite-scroll-item {
+    padding: 1rem;
+    font-size: 1rem;
+    min-height: 120px;
+  }
+  
+  .infinite-scroll-item .item-icon {
+    font-size: 2rem;
+  }
+  
+  .infinite-scroll-item .item-title {
+    font-size: 1rem;
+  }
+  
+  .infinite-scroll-item .item-description {
+    font-size: 0.85rem;
+  }
+}

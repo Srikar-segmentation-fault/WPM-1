@@ -1,50 +1,132 @@
 extends layout
 
 block content
-  h1= title
-  p  Story Writer -Provides the basic story idea.
+  //- Hero Section
+  .row.hero-banner.align-items-center
+    //- Hero Text (Full Width, Centered)
+    .col-12.text-center
+      h1.display-4.font-weight-bold Your Next Big Break Awaits
+      p.lead.my-4
+        | Discover verified auditions, connect with casting directors, and showcase your talent 
+        | to the film industry—all in one platform. No more missed opportunities.
+      a.btn.btn-primary.btn-lg.px-5.mr-3(href='/locations') Find Auditions
+      a.btn.btn-outline-primary.btn-lg.px-5(href='/register') Join Now
+  
+  //- WebGL Canvas Row (Full Width, Below Hero)
+  .row.mb-5
+    .col-12
+      .hero-canvas-container
+        canvas#hero-canvas-local
 
-  p  Screenplay Writer - Converts the story into a structured screenplay.
+  //- Value Proposition Section
+  .row.mt-5.text-center
+    .col-12
+      h2.mb-4 Why TFI-24?
+      hr.w-25.mb-5
+  
+  .row.mb-5
+    .col-12.col-md-4.mb-4
+      .card.craft-card.h-100
+        .card-body.text-center
+          i.fas.fa-calendar-check.fa-3x.text-primary.mb-3
+          h5.card-title Never Miss an Audition
+          p.card-text Get real-time notifications about auditions matching your skills and location. Stay updated 24/7.
+    
+    .col-12.col-md-4.mb-4
+      .card.craft-card.h-100
+        .card-body.text-center
+          i.fas.fa-shield-alt.fa-3x.text-primary.mb-3
+          h5.card-title Verified & Safe
+          p.card-text All casting calls are verified. No fake auditions, no scams—just genuine opportunities.
+    
+    .col-12.col-md-4.mb-4
+      .card.craft-card.h-100
+        .card-body.text-center
+          i.fas.fa-video.fa-3x.text-primary.mb-3
+          h5.card-title Digital Portfolio
+          p.card-text Create your profile, upload showreels, and let casting directors discover you.
 
-  p  Dialogue Writer - Writes the dialogues for characters.
+  //- 24 Crafts Section (Roles in Film Industry)
+  - 
+    const crafts = [
+      { name: 'Actor/Actress', icon: 'fa-theater-masks', desc: 'Bring characters to life on screen' },
+      { name: 'Voice Artist', icon: 'fa-microphone', desc: 'Provide dubbing and voice-over work' },
+      { name: 'Dancer/Choreographer', icon: 'fa-music', desc: 'Create and perform dance sequences' },
+      { name: 'Model', icon: 'fa-camera', desc: 'Work in photoshoots and promotional content' },
+      { name: 'Musician', icon: 'fa-guitar', desc: 'Perform in films and albums' },
+      { name: 'Playback Singer', icon: 'fa-microphone-alt', desc: 'Sing songs for movies' },
+      { name: 'Stunt Performer', icon: 'fa-running', desc: 'Execute action sequences safely' },
+      { name: 'Child Artist', icon: 'fa-child', desc: 'Perform roles for young characters' },
+      { name: 'Extra/Junior Artist', icon: 'fa-users', desc: 'Appear in background and crowd scenes' },
+      { name: 'Casting Director', icon: 'fa-user-tie', desc: 'Find the perfect talent for roles' },
+      { name: 'Director', icon: 'fa-film', desc: 'Lead the creative vision of projects' },
+      { name: 'Producer', icon: 'fa-briefcase', desc: 'Finance and manage productions' },
+      { name: 'Screenplay Writer', icon: 'fa-pen-fancy', desc: 'Write compelling scripts' },
+      { name: 'Dialogue Writer', icon: 'fa-comment', desc: 'Craft memorable dialogues' },
+      { name: 'Cinematographer', icon: 'fa-video', desc: 'Handle camera and visual storytelling' },
+      { name: 'Editor', icon: 'fa-cut', desc: 'Shape the final cut of productions' },
+      { name: 'Music Director', icon: 'fa-music', desc: 'Compose background scores and songs' },
+      { name: 'Costume Designer', icon: 'fa-tshirt', desc: 'Design character wardrobes' },
+      { name: 'Makeup Artist', icon: 'fa-paint-brush', desc: 'Transform actors for roles' },
+      { name: 'Art Director', icon: 'fa-palette', desc: 'Design sets and visual environments' },
+      { name: 'VFX Artist', icon: 'fa-magic', desc: 'Create visual effects and CGI' },
+      { name: 'Sound Engineer', icon: 'fa-volume-up', desc: 'Record and mix audio' },
+      { name: 'Production Manager', icon: 'fa-clipboard-list', desc: 'Coordinate production logistics' },
+      { name: 'Publicist', icon: 'fa-bullhorn', desc: 'Promote films and manage PR' }
+    ]
 
-  p  Producer -Finances and manages the entire film production.
+  .row.mt-5
+    .col-12
+      h2.text-center.mb-4 Find Your Role in the Film Industry
+      p.text-center.text-muted.mb-5 TFI-24 connects talent across all 24 crafts of filmmaking
+  
+  .row
+    each craft in crafts
+      .col-12.col-md-6.col-lg-4.col-xl-3.mb-4
+        .card.craft-card
+          .card-body.text-center
+            i.fas(class=craft.icon).fa-2x.text-primary.mb-3
+            h5.card-title= craft.name
+            p.card-text.text-muted.small= craft.desc
 
-  p  Director - Heads the film, visualizes the story, and guides the team.
+  //- Call to Action
+  .row.mt-5.mb-4
+    .col-12.text-center
+      h3.mb-4 Ready to Start Your Journey?
+      p.lead.mb-4 Join TFI-24 today and connect with opportunities that match your talent
+      a.btn.btn-primary.btn-lg.px-5(href='/register') Create Your Profile
 
-  p  Cast (Actors/Actresses) - Perform characters on screen.
-
-  p  Art Director - Designs sets, props, and visual environment.
-
-  p  Cinematographer (DOP) - Handles camera work, lighting, and visual framing.
-
-  p  Costume Designer - Designs and manages costumes.
-
-  p  Production Manager - Looks after the day-to-day production work.
-
-  p  Makeup Artists - Enhance the looks of actors according to rolesa
-
-  p  Hair Stylists -Maintain character-specific hairstyles.
-  p Stunt Master - Designs and directs action sequences.
-
-  p Choreographer - Composes and directs dance sequences.
-
-  p Music Director - Composes songs and background score.
-
-  p Lyricist - Writes lyrics for the songs.
-
-  p Singers (Playback Singers) - Sing songs for actors to lip-sync on screen.
-
-  p Sound Engineer - Records, mixes, and masters dialogues, effects, and music.
-
-  p Editing Team - Cuts and arranges shots to make the final movie.
-
-  p VFX (Visual Effects) Team - Adds computer-generated imagery and effects.
-
-  p Lighting Technicians - Manage lighting setup for mood and clarity.
-
-  p Publicity Designers -Create posters, trailers, and promotional content.
-
-  p Distributor - Markets and distributes the film to theaters/OTT.
-
-  p Exhibitor (Theater Owners) - Finally screens the movie to the audience.
+block append scripts
+  //- This script (with the polling) is already working, no changes needed.
+  script.
+    function initLocalPosters() {
+      const canvas = document.getElementById('hero-canvas-local');
+      const OGL = window.OGL || window.ogl;
+      if (canvas && typeof initFlyingPosters === 'function') {
+        const posterImages = [
+          '/img1.jpg', 
+          '/img2.jpg', 
+          '/img3.jpg',
+          '/img1.jpg'
+        ];
+        try {
+          initFlyingPosters(canvas, posterImages);
+          console.log('✓ Flying posters animation initialized on index page');
+        } catch (e) {
+          console.warn('Flying posters animation error:', e);
+        }
+      }
+    }
+    
+    function checkOGLLoaded() {
+      const OGL = window.OGL || window.ogl;
+      if (OGL) {
+        console.log('OGL library found. Initializing...');
+        initLocalPosters();
+      } else {
+        console.warn('Waiting for OGL library...');
+        setTimeout(checkOGLLoaded, 100);
+      }
+    }
+    
+    document.addEventListener('DOMContentLoaded', checkOGLLoaded);

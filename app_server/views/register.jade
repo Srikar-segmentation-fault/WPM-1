@@ -1,0 +1,30 @@
+extends layout
+
+block content
+  .container
+    .row.justify-content-center
+      .col-md-6
+        .content-wrapper
+          h1.text-center.mb-4 Create Account
+          
+          //- Registration Form
+          //- This form POSTs to the /register route you already have
+          form(action="/register", method="POST")
+            .form-group
+              label(for="name") Full Name
+              input.form-control(type="text", id="name", name="name", placeholder="Enter your name", required)
+            .form-group
+              label(for="email") Email address
+              input.form-control(type="email", id="email", name="email", placeholder="Enter email", required)
+            .form-group
+              label(for="password") Password
+              input.form-control(type="password", id="password", name="password", placeholder="Create password", required)
+            
+            button.btn.btn-primary.btn-block(type="submit") Sign Up
+          
+          hr.my-4
+          
+          //- Link back to Login Page
+          .text-center
+            p.mb-0 Already have an account? 
+              a(href="/login") Login here

@@ -1,23 +1,146 @@
 extends layout
 include _includes/sharedhtmlfunctions
+
 block content
-    .row.banner
-        .col-12
-            h1= pageHeader.title
-                small &nbsp;#{pageHeader.strapline}
-    .row 
-        .col-12.col-md-8
-            each location in locations
-                .card
-                    .card-block
-                        h4 
-                            a(href="/location")= location.name
-                            +outputRating(location.rating)
-                            span.badge.badge-pill.badge-default.float-right=
-                location.distance
-                    p.address= location.address
-                        .facilities
-                            each facility in location.facilities
-                                span.badge.badge-warning= facility
-        .col-12.col-md-4
-          p.lead=sidebar
+  .row.mb-4
+    .col-12
+      h1= pageHeader.title
+        small.d-block.mt-2.text-muted #{pageHeader.strapline}
+  
+  //- Search & Filter Bar
+  .row.mb-4
+    .col-12
+      .card.shadow-sm
+        .card-body
+          form.form-inline.justify-content-between.flex-wrap
+            .form-group.mb-2.mr-3
+              label.mr-2(for="roleFilter")
+                i.fas.fa-filter.mr-1
+                | Role Type:
+              select#roleFilter.form-control(name="roleFilter")
+                option(value="all") All Roles
+                option(value="lead") Lead Roles
+                option(value="supporting") Supporting Roles
+                option(value="extra") Extras
+                option(value="voice") Voice Artists
+                option(value="dance") Dancers
+            
+            .form-group.mb-2.mr-3
+              label.mr-2(for="distanceFilter")
+                i.fas.fa-map-marker-alt.mr-1
+                | Distance:
+              select#distanceFilter.form-control(name="distanceFilter")
+                option(value="all") Any Distance
+                option(value="5") Within 5 km
+                option(value="10") Within 10 km
+                option(value="25") Within 25 km
+            
+            button.btn.btn-primary.mb-2(type="submit")
+              i.fas.fa-search.mr-1
+              | Apply Filters
+
+  .row 
+    .col-12.col-md-8
+      //- Auditions List
+      each location in locations
+        .card.location-card.mb-4.shadow-sm
+          .card-body
+            .d-flex.justify-content-between.align-items-start.mb-3
+              div
+                h4.mb-2
+                  a.text-decoration-none(href="/location")= location.name
+                  //- New/Urgent Badges
+                  if location.isNew
+                    span.badge.badge-new.ml-2 NEW
+                  if location.isUrgent
+                    span.badge.badge-urgent.ml-2 URGENT
+                +outputRating(location.rating)
+                p.text-muted.mb-1
+                  i.fas.fa-map-marker-alt.mr-2
+                  = location.address
+                p.text-muted.small.mb-0
+                  i.fas.fa-clock.mr-2
+                  | Posted 2 days ago
+              div.text-right
+                span.badge.badge-pill.badge-distance.px-3.py-2
+                  i.fas.fa-location-arrow.mr-1
+                  = location.distance
+            
+            //- Role Details
+            .mb-3
+              p.mb-2
+                strong
+                  i.fas.fa-user-circle.mr-2
+                  | Role: 
+                span= location.roleName || "Lead Actor"
+              p.mb-2
+                strong
+                  i.fas.fa-calendar-check.mr-2
+                  | Deadline: 
+                span.text-danger= location.deadline || "25th October 2025"
+              p.mb-0
+                strong
+                  i.fas.fa-money-bill-wave.mr-2
+                  | Compensation: 
+                span.text-success= location.compensation || "As per industry standards"
+            
+            //- Facilities/Requirements
+            .facilities.mb-3
+              span.text-muted.small.mr-2
+                i.fas.fa-check-circle.mr-1
+                | Requirements:
+              each facility in location.facilities
+                span.badge.facility-badge.mr-2.mb-2= facility
+            
+            //- Actions
+            .d-flex.justify-content-between.align-items-center
+              a.btn.btn-primary(href="/location")
+                i.fas.fa-info-circle.mr-1
+                | View Details
+              div
+                button.btn.btn-outline-secondary.btn-sm.mr-2(type="button", title="Save for Later")
+                  i.fas.fa-bookmark
+                button.btn.btn-outline-secondary.btn-sm(type="button", title="Share")
+                  i.fas.fa-share-alt
+      
+      //- No Results Message
+      if !locations || locations.length === 0
+        .alert.alert-info.text-center(role="alert")
+          i.fas.fa-search.fa-3x.mb-3
+          h5 No auditions found
+          p Try adjusting your filters or check back later for new opportunities!
+
+    //- Sidebar
+    .col-12.col-md-4
+      //- Quick Stats Card
+      .card.mb-4.shadow-sm
+        .card-header.bg-primary.text-white
+          i.fas.fa-chart-line.mr-2
+          | Platform Stats
+        .card-body
+          .mb-3
+            h3.mb-0.text-primary 1,247
+            small.text-muted Active Auditions
+          .mb-3
+            h3.mb-0.text-success 3,892
+            small.text-muted Registered Artists
+          .mb-0
+            h3.mb-0.text-info 567
+            small.text-muted Successfully Cast
+      
+      //- Information Box
+      .card.shadow-sm
+        .card-body
+          h5.card-title
+            i.fas.fa-lightbulb.mr-2
+            | Tips for Success
+          p.card-text= sidebar || "Browse through verified audition opportunities. Read reviews from other artists to understand what to expect. Keep your portfolio updated and respond quickly to opportunities that match your profile."
+          hr
+          h6
+            i.fas.fa-bell.mr-2
+            | Stay Updated
+          p.card-text.small
+            | Enable notifications to get instant alerts when new auditions matching your profile are posted.
+          a.btn.btn-outline-primary.btn-block(href="/register")
+            i.fas.fa-user-plus.mr-1
+            | Create Your Profile

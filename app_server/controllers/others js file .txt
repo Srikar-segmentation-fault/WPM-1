@@ -1,0 +1,13 @@
+/* GET 'about' page */
+const about = (req, res) => {
+  // Fix: Render the 'about.jade' view, not 'generic-text.jade'
+  // We also pass a pageHeader object to be safe.
+  res.render('about', { 
+    title: 'About TFI-24',
+    pageHeader: { title: 'About TFI-24' }
+  });
+};
+
+export default {
+  about
+};

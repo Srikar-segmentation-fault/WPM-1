@@ -1,27 +1,87 @@
 extends layout
+
 block content
-  .row.banner
-    .col-12
-      h1 Review TFI-24
   .row
-    .col-12.col-md-8
-      form(action="/location", method="get", role="form")
-        .form-group.row
-          label.col-10.col-sm-2.col-form-label(for="name") Name
-          .col-12.col-sm-10
-            input#name.form-control(name="name")
-        .form-group.row
-          label.col-10.col-sm-2.col-form-label(for="rating") Rating
-          .col-12.col-sm-2
-            select#rating.form-control.input-sm(name="rating")
-              option 5
-              option 4
-              option 3
-              option 2
-              option 1
-          .form-group.row
-            label.col-sm-2.col-form-label(for="review") Review
-            .col-sm-10
-              textarea#review.form-control(name="review", rows="5")
-          button.btn.btn-primary.float-right Add my review
-    .col-12.col-md-4
+    .col-12.col-md-10.col-lg-8.mx-auto
+      .text-center.mb-4
+        i.fas.fa-star.fa-3x.text-warning.mb-3
+        h1.mb-2 Share Your Audition Experience
+        p.lead.text-muted Help fellow artists by sharing your honest feedback
+      
+      .card.shadow-sm
+        .card-body.p-4
+          form(action="/location", method="post", role="form")
+            
+            //- Name
+            .form-group
+              label(for="name")
+                i.fas.fa-user.mr-2
+                | Your Name
+                span.text-danger  *
+              input#name.form-control.form-control-lg(
+                name="name", 
+                placeholder="Enter your full name",
+                required
+              )
+              
+            //- Rating
+            .form-group.mt-4
+              label(for="rating")
+                i.fas.fa-star.mr-2
+                | Overall Rating
+                span.text-danger  *
+              select#rating.form-control.form-control-lg(name="rating")
+                option(value="5") ⭐⭐⭐⭐⭐ Excellent
+                option(value="4") ⭐⭐⭐⭐ Very Good
+                option(value="3") ⭐⭐⭐ Good
+                option(value="2") ⭐⭐ Fair
+                option(value="1") ⭐ Poor
+              small.form-text.text-muted Rate your overall audition experience
+                
+            //- Review Text
+            .form-group.mt-4
+              label(for="review")
+                i.fas.fa-comment-dots.mr-2
+                | Your Review
+                span.text-danger  *
+              textarea#review.form-control.form-control-lg(
+                name="review", 
+                rows="6",
+                placeholder="Tell us about your experience... Was the casting team professional? How were the facilities? Any tips for future applicants?",
+                required
+              )
+              small.form-text.text-muted Minimum 20 characters. Be honest and constructive.
+            
+            //- Optional: Role Applied For
+            .form-group.mt-4
+              label(for="role")
+                i.fas.fa-theater-masks.mr-2
+                | Role Applied For 
+                span.text-muted (Optional)
+              input#role.form-control.form-control-lg(
+                name="role", 
+                placeholder="e.g., Lead Actor, Supporting Role, Extra"
+              )
+                
+            //- Submit Button
+            .form-group.mt-5.mb-0
+              button.btn.btn-primary.btn-lg.btn-block(type="submit")
+                i.fas.fa-paper-plane.mr-2
+                | Submit My Review
+              
+              p.text-center.text-muted.small.mt-3.mb-0
+                i.fas.fa-lock.mr-1
+                | Your review will be public and help others make informed decisions
+
+      //- Guidelines
+      .alert.alert-info.mt-4(role="alert")
+        h5.alert-heading
+          i.fas.fa-info-circle.mr-2
+          | Review Guidelines
+        hr
+        ul.mb-0.pl-3
+          li Be respectful and professional in your feedback
+          li Focus on facts: punctuality, facilities, treatment, professionalism
+          li Avoid personal attacks or inappropriate language
+          li Share constructive criticism that can help improve experiences
+          li Your review helps build a transparent and trustworthy community

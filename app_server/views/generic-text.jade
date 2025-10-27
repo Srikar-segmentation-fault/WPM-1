@@ -1,12 +1,28 @@
 extends layout
-extends layout
+
 block content
-    .row.banner
-        .col-12
-            h1= title
-    .row
-        .col-12.col-lg-8
-            p 
-                TFI-24 was created to help people find right palces ot showcase their talent and get discovered by casting directors and filmmakers.
-                <br /><br />
-                Whether you're an aspiring actor, musician, or artist, TFI-24 connects you with opportunities to shine in the entertainment industry.
+  .row
+    .col-12.col-md-10.offset-md-1
+      
+      //- The pageHeader object is passed from the controller
+      if pageHeader
+        h1.mb-4.text-center= pageHeader.title
+      
+      //- The content string is passed from the controller.
+      //- This splits the string by double newlines and creates a paragraph for each part.
+      if content
+        - const paragraphs = content.split('\n\n');
+        each paragraph in paragraphs
+          p.lead.mb-3= paragraph
+      else
+        .text-center
+          i.fas.fa-film.fa-4x.text-primary.mb-4
+          p.lead
+            | TFI-24 is your gateway to the film industry. We bring auditions, 
+            | casting calls, and opportunities directly to talented individuals 
+            | who deserve to be discovered.
+            
+          p.lead
+            | Whether you're searching for your first break or your next big role, 
+            | our platform ensures you never miss an opportunity. Connect with 
+            | verified casting directors, filmmakers, and production houses—all in one place.

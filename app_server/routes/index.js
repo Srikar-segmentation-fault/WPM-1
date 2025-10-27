@@ -1,17 +1,27 @@
 const express = require('express');
 const router = express.Router();
+
+// Require all your controllers
+const ctrlMain = require('../controllers/main');
 const ctrlLocations = require('../controllers/locations');
-const ctrlOthers = require('../controllers/others');
+const ctrlAuth = require('../controllers/authentication');
 
-/* Locations pages */
-router.get('/', ctrlLocations.homelist);
+/* --- Main Pages (from main.js) --- */
+router.get('/', ctrlMain.index);
+router.get('/about', ctrlMain.about);
+// This is the route that is missing
+router.get('/register', ctrlMain.register); 
+
+/* --- Location Pages (from locations.js) --- */
+router.get('/locations', ctrlLocations.homelist);
 router.get('/location', ctrlLocations.locationInfo);
-router.get('/location/review/new', ctrlLocations.addReview);
+router.get('/location-review-form', ctrlLocations.addReview);
 
-/* Other pages */
-router.get('/about', ctrlOthers.about);
-
-/* Login page route */
-router.get('/login', ctrlLocations.renderLoginPage);
+/* --- Authentication Pages --- */
+// This is the other route that is missing
+router.get('/login', ctrlLocations.renderLoginPage); 
+router.post('/register', ctrlAuth.register);
+router.post('/login', ctrlAuth.login);
 
 module.exports = router;
+

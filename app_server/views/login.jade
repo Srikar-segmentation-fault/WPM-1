@@ -1,24 +1,26 @@
 extends layout
 
 block content
-  .row
-    .col-md-8.offset-md-2
-      h1.text-center.mb-4 Login to TFI-24
-      hr
-      form(action="/login", method="post", role="form")
-        .form-group.row
-          label.col-md-4.col-form-label(for="email") Email Address
-          .col-md-8
-            input#email.form-control(type="email", name="email", placeholder="Enter your email")
-        .form-group.row.mt-3
-          label.col-md-4.col-form-label(for="password") Password
-          .col-md-8
-            input#password.form-control(type="password", name="password", placeholder="Enter your password")
-        .form-group.row.mt-4
-          .col-md-8.offset-md-4
-            button.btn.btn-primary(type="submit") 
-              i.fas.fa-sign-in-alt.mr-1
-              |  Login
-      .text-center.mt-4
-        p Don't have an account? 
-          a(href="/register") Sign up here
+  .container
+    .row.justify-content-center
+      .col-md-6
+        .content-wrapper
+          h1.text-center.mb-4 Login
+          
+          //- Login Form
+          form(action="/login", method="POST")
+            .form-group
+              label(for="email") Email address
+              input.form-control(type="email", id="email", name="email", placeholder="Enter email", required)
+            .form-group
+              label(for="password") Password
+              input.form-control(type="password", id="password", name="password", placeholder="Password", required)
+            
+            button.btn.btn-primary.btn-block(type="submit") Login
+          
+          hr.my-4
+          
+          //- Link to Sign Up Page
+          .text-center
+            p.mb-0 Don't have an account? 
+              a(href="/register") Sign up here
