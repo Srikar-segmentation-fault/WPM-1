@@ -25,7 +25,7 @@ block content
       
       //- CARD SWAP ANIMATION CONTAINER
       .card-swap-wrapper.my-5
-        //- UPDATED: Changed text and fixed alignment
+        //- UPDATED: Changed text to "Hover to pause"
         p.text-center.text-muted.mb-3.card-swap-instruction (Hover on cards to pause)
         
         .card-swap-container#cardSwapAbout
@@ -123,28 +123,30 @@ block content
 
 block append scripts
   script.
-    //- SCRIPT FIX: Reverted to the smooth, built-in animation
+    //- SCRIPT FIX: This is the smooth, built-in animation script
     document.addEventListener('DOMContentLoaded', function() {
       const container = document.getElementById('cardSwapAbout');
       
+      // Check if GSAP is loaded (from layout.jade)
       if (typeof gsap === 'undefined') {
         console.error('GSAP library not loaded. Card swap animation cannot initialize.');
         return;
       }
       
+      // Check if the init function is loaded (from layout.jade)
       if (typeof initCardSwap !== 'function') {
         console.warn('initCardSwap function not available.');
         return;
       }
 
-      // Re-enable the built-in animation and add pauseOnHover
+      // Initialize the animation with auto-play and hover-to-pause
       try {
         initCardSwap('cardSwapAbout', {
           width: 500,
           height: 400,
           cardDistance: 60,
           verticalDistance: 70,
-          delay: 2000,          // <-- Auto-play every 2 seconds
+          delay: 4000,          // <-- Auto-plays every 4 seconds
           pauseOnHover: true,   // <-- Pauses when you hover
           skewAmount: 6,
           easing: 'elastic'
