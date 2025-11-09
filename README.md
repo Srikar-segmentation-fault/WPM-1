@@ -6,4 +6,9 @@
  3. add a .env folder ino the project and initialize a variable 'MONGODBURI' to the connection string (eg: MONGODBURI=mongodb+srv:......)
 
 
+ deployed render link: 
+ https://wpm-1-j5tm.onrender.com
+
+
+
 
